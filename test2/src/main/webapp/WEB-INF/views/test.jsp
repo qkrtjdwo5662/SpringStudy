@@ -4,10 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>제목목목목ㄱㅁ곰</title>
+<title>Insert title here</title>
 </head>
 <body>
-	index ----
-	<a href="/test">테스트로 </a>
+	<a href="/index">인덱스로 </a>
+	<br/>
+	test임 -----
 </body>
 </html>
