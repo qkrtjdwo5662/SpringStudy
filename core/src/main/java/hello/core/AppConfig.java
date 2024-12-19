@@ -18,18 +18,21 @@ public class AppConfig {
     // 외부에서 주입해준다고 해서 의존관계 주입이라고 함 DI
 
     // app config로 사용영역과 구성영역이 분리됨
+
+    @Bean
+    public MemberService memberService(){
+        System.out.println("call AppConfig.memberService");
+        return new MemberServiceImpl(memberRepository());
+    }
     @Bean
     public MemberRepository memberRepository() {
+        System.out.println("call AppConfig.memberRepository");
         return new MemoryMemberRepository();
     }
 
     @Bean
-    public MemberService memberService(){
-        return new MemberServiceImpl(memberRepository());
-    }
-
-    @Bean
     public OrderService orderService(){
+        System.out.println("call AppConfig.orderService");
         return new OrderServiceImpl(
                 memberRepository(),
                 discountPolicy());
