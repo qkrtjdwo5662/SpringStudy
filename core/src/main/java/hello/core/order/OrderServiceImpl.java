@@ -1,14 +1,16 @@
 package hello.core.order;
 
+import hello.core.annotation.MainDiscountPolicy;
 import hello.core.discount.DiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
+//@RequiredArgsConstructor // final 붙은거 가지고 생성자 만듬
 public class OrderServiceImpl implements OrderService{
-
 
     //private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
     // 기존 FIX -> RATE
@@ -24,8 +26,9 @@ public class OrderServiceImpl implements OrderService{
     // 이렇게만 하면 nullpointer exception 터짐
     // 이거 해결하려면 누군가가 적절한 구현체를 만들어줘야함
 
-    @Autowired
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+    @Autowired // 생략 가능
+    public OrderServiceImpl(MemberRepository memberRepository,
+                            @MainDiscountPolicy DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
